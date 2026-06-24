@@ -31,7 +31,25 @@ const updateStats = (): void => {
         (todo) => todo.completed === true,
     ).length;
 
-    todoStats.textContent = `Total: ${totalTodos} || Completed: ${completedTodos} `;
+    // todoStats.textContent = `Total: ${totalTodos} || Completed: ${completedTodos} `;
+
+    todoStats.innerHTML = `
+        <div class="flex items-center gap-4 text-xs font-semibold tracking-wide uppercase">
+            <span class="flex items-center gap-1.5 text-slate-400">
+            Total 
+            <span class="bg-slate-700 text-cyan-400 px-2 py-0.5 rounded-full border border-slate-600 shadow-sm shadow-cyan-500/10">
+                ${totalTodos}
+            </span>
+            </span>
+            <span class="text-slate-600 font-light">|</span>
+            <span class="flex items-center gap-1.5 text-slate-400">
+            Completed 
+            <span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/20 shadow-sm">
+                ${completedTodos}
+            </span>
+            </span>
+        </div>
+        `;
 
     // showing or hiding clear button
     if (completedTodos > 0) {
@@ -46,7 +64,7 @@ const renderTodos = (): void => {
     todoList.innerHTML = ""; // clearing previous list
 
     if (todos.length === 0) {
-        todoList.innerHTML = `<li>No tasks created yet. Want to create some tasks? </li>`;
+        todoList.innerHTML = `<li class="text-red-200">No tasks created yet. Want to create some tasks? </li>`;
         updateStats();
         return;
     }
